@@ -6,7 +6,7 @@
 /*   By: vfaramel <vfaramel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 11:29:25 by vfaramel          #+#    #+#             */
-/*   Updated: 2023/02/24 19:23:01 by vfaramel         ###   ########.fr       */
+/*   Updated: 2023/02/24 22:08:00 by vfaramel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ int	ft_rrotate(int *a, int size)
 	return (1);
 }
 
-int	ft_birrotate(int *a, int asize, int *b, int bsize)
+int	ft_birrotate(t_gen *gen)
 {
-	return (ft_rrotate(a, asize) + ft_rrotate(b, bsize) - 1);
+	return (ft_rrotate(gen->a, gen->asize)
+		+ ft_rrotate(gen->b, gen->bsize) - 1);
 }

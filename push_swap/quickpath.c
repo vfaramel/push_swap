@@ -6,40 +6,11 @@
 /*   By: vfaramel <vfaramel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 11:59:43 by vfaramel          #+#    #+#             */
-/*   Updated: 2023/02/24 19:26:19 by vfaramel         ###   ########.fr       */
+/*   Updated: 2023/02/24 22:05:16 by vfaramel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	putplace(t_gen *gen, int i)
-{
-	int	x;
-	int	n;
-
-	x = 0;
-	n = findspace(gen->a, gen->asize, gen->b[i]);
-	if (gen->bsize - i > i && gen->asize - n > n)
-	{
-		if (i <= n)
-		{
-			while (i != 0)
-			{
-				x += ft_birotate(gen);
-				i--;
-				n--;
-			}
-			while (n != 0)
-			{
-				x += ft_rotate(gen->a, gen->asize);
-				n--;
-			}
-			
-		}
-	}
-	else if (*bsize - i < i && *asize - n < n)
-	{}
-}
 
 int	maxint(int a, int b)
 {
