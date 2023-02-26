@@ -13,29 +13,29 @@
 #include "push_swap.h"
 
 
-// int	countdiff(int *b, int *bsize)
-// {
-// 	int	maj;
-// 	int	min;
-// 	int	i;
-// 	int	x;
+int	countdiff(int *b, int bsize)
+{
+	int	maj;
+	int	min;
+	int	i;
+	int	x;
 
-// 	x = 0;
-// 	maj = 0;
-// 	min = 0;
-// 	i = 0;
-// 	while(i < *bsize)
-// 	{
-// 		if (b[i] < b[*bsize - 1])
-// 			min++;
-// 		if (b[i] > b[*bsize - 1])
-// 			maj++;
-// 		i++;
-// 	}
-// 	if (maj > b[*bsize - 1] - min - 1)
-// 		x += ft_rotate(b, *bsize);
-// 	return (x);
-// }
+	x = 0;
+	maj = 0;
+	min = 0;
+	i = 0;
+	while(i < bsize)
+	{
+		if (b[i] < b[bsize - 1])
+			min++;
+		if (b[i] > b[bsize - 1])
+			maj++;
+		i++;
+	}
+	if (maj > b[bsize - 1] - min - 1)
+		x += ft_rotate(b, bsize);
+	return (x);
+}
 
 // int	ft_search(int *a, int *asize, int *b, int *bsize)
 // {
@@ -67,56 +67,49 @@
 // 	return (x);
 // }
 
-// int	runwind(int *a, int *asize, int *b, int *bsize)
-// {
-// 	int	msize;
-// 	int	x;
+void	runwind(t_gen *gen)
+{
+	while (gen->asize > 3)
+	{
 
-// 	x = 0;
-// 	msize = *asize + *bsize;
-// 	while (*asize > 1)
-// 	{
-// 		if (*asize == 3)
-// 		{
-// 			if (a[1] > a[0] && a[0] > a[2])
-// 				x += ft_rrotate(a, *asize);
-// 			else if (a[2] > a[0] && a[2] > a[1])
-// 				x += ft_rotate(a, *asize);
-// 			if (a[1] < a[2])
-// 				x += ft_swap(a, *asize);
-// 			break ;
-// 			//prova(a, b, msize, x);
-// 		}
-// 		while (msize - a[*asize - 1] < a[*asize - 1] - *bsize - 1)
-// 		{
-// 			x += ft_rotate(a, *asize);
-// 		//	prova(a, b, msize, x);
-// 		}
-// 		// if (a[*asize - 1] > a[*asize - 2] && a[*asize - 1] < a[*asize - 3])
-// 		// 	x += ft_swap(a, *asize);
-// 		if (correct_order(a, *asize))
-// 			break ;
-// 		x += push(a, (*asize)--, b, (*bsize)++);
-// 		// if (b[*bsize - 1] < *bsize - b[*bsize - 1])
-// 		// 	x += ft_rotate(b, *bsize);
-// 		x += countdiff(b, bsize);
-// 		prova(gen->msize, x);
-// 	}
-// 	return (x);
-// }
+		while (gen->msize - gen->a[gen->asize - 1] < gen->a[gen->asize - 1] - gen->bsize - 1)
+		{
+			ft_rotate(gen->a, gen->asize);
+			gen->x++;
+		}
+		// if (a[*asize - 1] > a[*asize - 2] && a[*asize - 1] < a[*asize - 3])
+		// 	x += ft_swap(a, *asize);
+		// if (correct_order(gen->a, gen->asize))
+		// 	break ;
+		gen->x +=push(gen->a, (gen->asize)--, gen->b, (gen->bsize)++);
+		// if (b[*bsize - 1] < *bsize - b[*bsize - 1])
+		// 	x += ft_rotate(b, *bsize);
+		gen->x += countdiff(gen->b, gen->bsize);
+	}		
+	if (gen->asize == 3)
+		{
+			if (gen->a[1] > gen->a[0] && gen->a[1] > gen->a[2])
+				gen->x += ft_rrotate(gen->a, gen->asize);
+			else if (gen->a[2] > gen->a[0] && gen->a[2] > gen->a[1])
+				gen->x += ft_rotate(gen->a, gen->asize);
+			if (gen->a[1] < gen->a[2])
+				gen->x += ft_swap(gen->a, gen->asize);
+		}
+}
 
 void	push_swap(t_gen *gen)
 {
-	int		x;
-
-	x = 0;
 	gen->asize = gen->msize;
 	gen->bsize = 0;
-//	x += runwind(gen);
-	prova(gen, x);
+	runwind(gen);
+	prova(gen);
+	while(gen->b != 0)
+		quickpath(gen);
+	prova(gen);
 	// while (!correct_order(gen))
 	// {
 	// 	x += ft_search(gen);
 	// 	prova(gen, x);
 	// }
+	// prova(gen);
 }

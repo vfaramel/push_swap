@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 
 # include "../libft/libft.h"
+#include <stdio.h>
 
 int		main(int argc, char **argv);
 int		*replacenumbers(int	*a, int size);

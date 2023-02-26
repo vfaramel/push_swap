@@ -20,8 +20,9 @@ int	main(int argc, char **argv)
 
 	i = -1;
 	gen.msize = argc - 1;
-	gen.b = ft_calloc((argc - 1), sizeof(int));
-	base = ft_calloc((argc - 1), sizeof(int));
+	gen.x = 0;
+	gen.b = calloc((argc - 1), sizeof(int));
+	base = calloc((argc - 1), sizeof(int));
 	while (++i < argc - 1)
 	{
 		base[argc - 2 - i] = atoi(argv[i + 1]);

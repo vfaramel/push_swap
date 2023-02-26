@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	prova(t_gen *gen, int x)
+void	prova(t_gen *gen)
 {
 	int	i;
 
@@ -23,7 +23,7 @@ void	prova(t_gen *gen, int x)
 	i = 0;
 	while (i < gen->msize)
 		printf("%d ", gen->b[i++]);
-	printf("\n		%d\n", x);
+	printf("\n		%d\n", gen->x);
 }
 
 // int	correct_order(int *a, int msize)

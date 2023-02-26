@@ -19,75 +19,82 @@ int	maxint(int a, int b)
 	return (b);
 }
 
-int	findspace(int *a, int *asize, int b)
+int	findspace(int *a, int asize, int b)
 {
 	int	n;
 
 	n = 0;
-	while (n < *asize - 1)
+	while (n < asize - 1)
 	{
-		if (a[n] > b && > a[n + 1])
+		if (a[n] > b && b > a[n + 1] || (a[n] < a[n + 1] && a[n] > b))
 			break ;
 		n++;
 	}
-	return (n);
+	return (n + 1);
 }
 
-int	tempcount(int i, int n, int *asize, int *bsize)
+int	tempcount(int i, int n, int asize, int bsize)
 {
 	int	tcount;
 
-	if (*bsize - i > i && *asize - n > n || *bsize - i < i && *asize - n < n)
+	tcount = 0;
+	if (bsize - i >= i && asize - n >= n)
 		tcount = maxint(i, n);
-	if (*bsize - i < i && *asize - n > n)
+	if (i >= bsize - i && n >= asize - n)
+		tcount = maxint(bsize - i, asize - n);
+	if (i >= bsize - i && asize - n >= n)
 	{
-		if (*asize - n > n + *bsize - i && i > n + *bsize - i)
-			tcount = n + *bsize - i;
-		else if (i > *asize - n)
-			tcount = maxint(*asize - n, *bsize - i);
+		if (asize - n >= n + bsize - i && i >= n + bsize - i)
+			tcount = n + bsize - i;
+		else if (i >= asize - n)
+			tcount = maxint(asize - n, bsize - i);
 		else
 			tcount = maxint(i, n);
 	}
-	if (*bsize - i > i && *asize - n < n)
+	if (bsize - i >= i && asize - n <= n)
 	{
-		if (*bsize - i > i + *asize - n && n > i + *asize - n)
-			tcount = i + *asize - n;
-		else if (n > *bsize - i)
-			tcount = maxint(*asize - n, *bsize - i);
+		if (bsize - i >= i + asize - n && n >= i + asize - n)
+			tcount = i + asize - n;
+		else if (n >= bsize - i)
+			tcount = maxint(asize - n, bsize - i);
 		else
 			tcount = maxint(i, n);
 	}
 	return (tcount);
 }
 
-int	quickpath(int *a, int *asize, int *b, int *bsize)
+void	quickpath(t_gen *gen)
 {
 	int	count;
-	int	i;
+	int	d;
 	int	n;
 	int	tcount;
 	int	w;
 
-	count = *asize + *bsize;
-	i = 0;
-	while (i < count)
+	count = gen->asize + gen->bsize;
+	d = 0;
+	w = 0;
+	while (d < count && d < gen->bsize / 2)
 	{
-		n = findspace(a, asize, b[*bsize - 1 - i]);
-		tcount = tempcount(i, n, *asize, *bsize);
+		n = findspace(gen->a, gen->asize, gen->b[gen->bsize - 1 - d]);
+		tcount = tempcount(gen->bsize - d, n, gen->asize, gen->bsize);
 		if (tcount < count)
 		{
 			count = tcount;
-			w = *bsize - 1 - i;
+			w = gen->bsize - 1 - d;
 		}
-		n = findspace(a, asize, b[i]);
-		tcount = tempcount(*bsize - 1 - i, n, *asize, *bsize);
+		// printf("%d b%d a%d\n",tcount, gen->bsize - 1 - d, n);
+		n = findspace(gen->a, gen->asize, gen->b[d]);
+		tcount = tempcount(d + 1, n, gen->asize, gen->bsize);
 		if (tcount < count)
 		{
 			count = tcount;
-			w = i;
+			w = d;
 		}
-		i++;
+		d++;
+		// printf("%d b%d a%d\n",tcount, gen->bsize -1 - d, n);
 	}
-
-	return (w);
+	// printf("\n%d %d\n", count, w);
+	putplace(gen, w + 1); /////FILL
+	prova(gen);
 }

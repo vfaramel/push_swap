@@ -30,6 +30,7 @@ void forw(t_gen *gen, int i, int n)
 		gen->x += ft_rotate(gen->b, gen->bsize);
 		i--;
 	}
+	gen->x += push(gen->b, (gen->bsize)--, gen->a, (gen->asize)++);
 }
 
 void	backw(t_gen *gen, int i, int n)
@@ -50,6 +51,7 @@ void	backw(t_gen *gen, int i, int n)
 		gen->x += ft_rrotate(gen->b, gen->bsize);
 		i--;
 	}
+	gen->x += push(gen->b, (gen->bsize)--, gen->a, (gen->asize)++);
 }
 
 void	splitb(t_gen *gen, int i, int n)
@@ -64,6 +66,7 @@ void	splitb(t_gen *gen, int i, int n)
 		gen->x += ft_rrotate(gen->a, gen->asize);
 		n--;
 	}
+	gen->x += push(gen->b, (gen->bsize)--, gen->a, (gen->asize)++);
 }
 
 void	splita(t_gen *gen, int i, int n)
@@ -78,13 +81,17 @@ void	splita(t_gen *gen, int i, int n)
 		gen->x += ft_rotate(gen->a, gen->asize);
 		n--;
 	}
+	gen->x += push(gen->b, (gen->bsize)--, gen->a, (gen->asize)++);
 }
 
-int	putplace(t_gen *gen, int i, int n)
+void	putplace(t_gen *gen, int i)
 {
-	int	n;
+	int n;
 //controlla ordine per favore, da lucido
-	n = findspace(gen->a, gen->asize, gen->b[i]);
+	n = findspace(gen->a, gen->asize, gen->b[i - 1]);
+	//printf("\n%d %d %d %d\n", gen->bsize - i, i, gen->asize - n, n);
+		printf("\n%d %d\n", gen->b[i - 1], gen->a[n - 1]);
+
 	if (gen->bsize - i > i && gen->asize - n > n)
 		backw(gen, i, n);
 	else if (gen->bsize - i < i && gen->asize - n < n)
@@ -92,19 +99,22 @@ int	putplace(t_gen *gen, int i, int n)
 	else if (gen->bsize - i < i && gen->asize - n > n)
 	{
 		if (gen->asize - n > n + gen->bsize - i && i > n + gen->bsize - i)
-			slpitb(gen, gen->bsize - i, n);
+			splitb(gen, gen->bsize - i, n);
 		else if (i > gen->asize - n)
-			forw(gen->bsize - i, gen->asize - n);
+			forw(gen, gen->bsize - i, gen->asize - n);
 		else
-			backw(i, n);
+			backw(gen, i, n);
 	}
 	else if (gen->bsize - i > i && gen->asize - n < n)
 	{
 		if (gen->bsize - i > i + gen->asize - n && n > i + gen->asize - n)
-			slpita(gen, gen->bsize - i, n);
+			splita(gen, i, gen->asize - n);
 		else if (n > gen->bsize - i)
-			tcount = maxint(*asize - n, *bsize - i);
+			forw(gen, gen->bsize - i, gen->asize - n);
 		else
-			tcount = maxint(i, n);
+			backw(gen, i, n);
 	}
+	else 
+		gen->x += push(gen->b, (gen->bsize)--, gen->a, (gen->asize)++);
 }
+

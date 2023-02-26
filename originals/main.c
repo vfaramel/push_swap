@@ -21,8 +21,8 @@ int main(int argc, char **argv)
 
 	// printf("%d ", argc);
 	i = -1;
-	b = ft_calloc((argc - 1), sizeof(int));
-	base = ft_calloc((argc - 1), sizeof(int));
+	b = calloc((argc - 1), sizeof(int));
+	base = calloc((argc - 1), sizeof(int));
 	while (++i < argc - 1)
 	{
 		base[argc - 2 - i] = atoi(argv[i + 1]);
