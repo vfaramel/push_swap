@@ -6,7 +6,7 @@
 /*   By: vfaramel <vfaramel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 14:30:48 by vfaramel          #+#    #+#             */
-/*   Updated: 2023/02/24 17:51:45 by vfaramel         ###   ########.fr       */
+/*   Updated: 2023/02/26 23:00:51 by vfaramel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,13 @@ void	prova(t_gen *gen)
 	while (i < gen->msize)
 		printf("%d ", gen->b[i++]);
 	printf("\n		%d\n", gen->x);
+}
+int	pushb(int *a, int asize, int *b, int bsize)
+{
+	b[bsize] = a[asize - 1];
+	a[asize - 1] = 0;
+	write(1, "pb\n", 3);
+	return (1);
 }
 
 // int	correct_order(int *a, int msize)

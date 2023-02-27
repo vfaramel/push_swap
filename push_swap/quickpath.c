@@ -6,7 +6,7 @@
 /*   By: vfaramel <vfaramel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 11:59:43 by vfaramel          #+#    #+#             */
-/*   Updated: 2023/02/24 22:05:16 by vfaramel         ###   ########.fr       */
+/*   Updated: 2023/02/26 23:05:47 by vfaramel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	findspace(int *a, int asize, int b)
 	n = 0;
 	while (n < asize - 1)
 	{
-		if (a[n] > b && b > a[n + 1] || (a[n] < a[n + 1] && a[n] > b))
+		if ((a[n] > b && b > a[n + 1]) || ((a[n] < a[n + 1] && a[n] > b)))
 			break ;
 		n++;
 	}
@@ -83,7 +83,6 @@ void	quickpath(t_gen *gen)
 			count = tcount;
 			w = gen->bsize - 1 - d;
 		}
-		// printf("%d b%d a%d\n",tcount, gen->bsize - 1 - d, n);
 		n = findspace(gen->a, gen->asize, gen->b[d]);
 		tcount = tempcount(d + 1, n, gen->asize, gen->bsize);
 		if (tcount < count)
@@ -92,9 +91,6 @@ void	quickpath(t_gen *gen)
 			w = d;
 		}
 		d++;
-		// printf("%d b%d a%d\n",tcount, gen->bsize -1 - d, n);
 	}
-	// printf("\n%d %d\n", count, w);
-	putplace(gen, w + 1); /////FILL
-	prova(gen);
+	putplace(gen, w + 1);
 }

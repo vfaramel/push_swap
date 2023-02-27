@@ -6,7 +6,7 @@
 /*   By: vfaramel <vfaramel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 03:22:58 by vfaramel          #+#    #+#             */
-/*   Updated: 2023/02/24 17:38:14 by vfaramel         ###   ########.fr       */
+/*   Updated: 2023/02/27 01:17:37 by vfaramel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ int	main(int argc, char **argv)
 	}
 	i = 0;
 	gen.a = replacenumbers(base, gen.msize);
+	if (gen.a == 0)
+	{
+		write(1, "Error\n", 6);
+		return (0);
+	}
 	push_swap(&gen);
 	return (0);
 }
