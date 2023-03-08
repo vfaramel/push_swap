@@ -6,13 +6,13 @@
 /*   By: vfaramel <vfaramel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 19:44:31 by vfaramel          #+#    #+#             */
-/*   Updated: 2023/02/27 01:28:32 by vfaramel         ###   ########.fr       */
+/*   Updated: 2023/03/07 14:13:41 by vfaramel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void forw(t_gen *gen, int i, int n)
+void	forw(t_gen *gen, int i, int n)
 {
 	while (i != 0 && n != 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: vfaramel <vfaramel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 14:30:48 by vfaramel          #+#    #+#             */
-/*   Updated: 2023/02/26 23:00:51 by vfaramel         ###   ########.fr       */
+/*   Updated: 2023/03/07 15:26:53 by vfaramel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	prova(t_gen *gen)
 		printf("%d ", gen->b[i++]);
 	printf("\n		%d\n", gen->x);
 }
+
 int	pushb(int *a, int asize, int *b, int bsize)
 {
 	b[bsize] = a[asize - 1];
@@ -33,34 +34,23 @@ int	pushb(int *a, int asize, int *b, int bsize)
 	return (1);
 }
 
-// int	correct_order(int *a, int msize)
-// {
-// 	int	i;
+int	maxint(int a, int b)
+{
+	if (a > b)
+		return (a);
+	return (b);
+}
 
-// 	i = 0;
-// 	if (a[msize - 1] == 0)
-// 		return (0);
-// 	while (i < msize - 1)
-// 	{
-// 		if (a[i] != a[i + 1] + 1)
-// 			return (0);
-// 		i++;
-// 	}
-// 	return (1);
-// }
+int	findspace(int *a, int asize, int b)
+{
+	int	n;
 
-// int	rcorrect_order(int *a, int msize)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	if (a[msize - 1] == 0)
-// 		return (0);
-// 	while (i < msize - 1)
-// 	{
-// 		if (a[i] + 1 != a[i + 1])
-// 			return (0);
-// 		i++;
-// 	}
-// 	return (1);
-//}
+	n = 0;
+	while (n < asize - 1)
+	{
+		if ((a[n] > b && b > a[n + 1]) || ((a[n] < a[n + 1] && a[n] > b)))
+			break ;
+		n++;
+	}
+	return (n + 1);
+}

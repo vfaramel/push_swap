@@ -6,7 +6,7 @@
 /*   By: vfaramel <vfaramel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 06:39:02 by vfaramel          #+#    #+#             */
-/*   Updated: 2023/02/16 08:49:07 by vfaramel         ###   ########.fr       */
+/*   Updated: 2023/03/07 19:21:50 by vfaramel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	*replacenumbers(int	*a, int size)
 	int	*a1;
 
 	i = 0;
+	if (!a)
+		return (0);
 	a1 = malloc(size * sizeof(int));
 	while (i < size)
 	{

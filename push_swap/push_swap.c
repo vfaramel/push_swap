@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_4.c                                           :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vfaramel <vfaramel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 07:35:35 by vfaramel          #+#    #+#             */
-/*   Updated: 2023/02/27 01:55:10 by vfaramel         ###   ########.fr       */
+/*   Updated: 2023/03/07 22:03:36 by vfaramel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ void	centera(t_gen *gen)
 	if (i < gen->msize / 2)
 	{
 		while (gen->a[0] != gen->msize)
-			ft_rrotatea(gen->a, gen->asize);
+			gen->x += ft_rrotatea(gen->a, gen->asize);
 	}
 	else
 	{
 		while (gen->a[0] != gen->msize)
-			ft_rotatea(gen->a, gen->asize);
+			gen->x += ft_rotatea(gen->a, gen->asize);
 	}
 }
 
@@ -59,11 +59,9 @@ void	runwind(t_gen *gen)
 {
 	while (gen->asize > 3)
 	{
-		while (gen->msize - gen->a[gen->asize - 1] < gen->a[gen->asize - 1] - gen->bsize - 1)
-		{
-			ft_rotatea(gen->a, gen->asize);
-			gen->x++;
-		}
+		while (gen->msize - gen->a[gen->asize - 1]
+			< gen->a[gen->asize - 1] - gen->bsize - 1)
+			gen->x += ft_rotatea(gen->a, gen->asize);
 		gen->x += pushb(gen->a, (gen->asize)--, gen->b, (gen->bsize)++);
 		gen->x += countdiff(gen->b, gen->bsize);
 	}
@@ -76,6 +74,11 @@ void	runwind(t_gen *gen)
 		if (gen->a[1] < gen->a[2])
 			gen->x += ft_swapa(gen->a, gen->asize);
 	}
+	else
+	{
+		if (gen->a[1] > gen->a[0])
+			gen->x += ft_swapa(gen->a, gen->asize);
+	}
 }
 
 void	push_swap(t_gen *gen)
@@ -86,5 +89,4 @@ void	push_swap(t_gen *gen)
 	while (gen->bsize != 0)
 		quickpath(gen);
 	centera(gen);
-//	prova(gen);
 }
