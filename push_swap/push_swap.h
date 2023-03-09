@@ -6,7 +6,7 @@
 /*   By: vfaramel <vfaramel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 03:49:35 by vfaramel          #+#    #+#             */
-/*   Updated: 2023/03/07 14:47:47 by vfaramel         ###   ########.fr       */
+/*   Updated: 2023/03/09 23:04:24 by vfaramel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,25 +29,26 @@ typedef struct g_list
 int		main(int argc, char **argv);
 int		*replacenumbers(int	*a, int size);
 void	prova(t_gen *gen);
+int		*argc2(char *argv, t_gen *gen);
+int		*argcmore(int argc, char **argv, t_gen *gen);
+int		toobig(char *str);
+int		ft_isnumeric(char *s);
 
-int		ft_swapa(int *a, int size);
-int		ft_swapb(int *a, int size);
-int		ft_biswap(int *a, int asize, int *b, int bsize);
-int		pusha(int *a, int asize, int *b, int bsize);
-int		pushb(int *a, int asize, int *b, int bsize);
-int		ft_rotatea(int *a, int size);
-int		ft_rotateb(int *a, int size);
+int		ft_swapa(t_gen *gen);
+int		ft_swapb(t_gen *gen);
+int		ft_biswap(t_gen *gen);
+int		pusha(t_gen *gen);
+int		pushb(t_gen *gen);
+int		ft_rotatea(t_gen *gen);
+int		ft_rotateb(t_gen *gen);
 int		ft_birotate(t_gen *gen);
-int		ft_rrotatea(int *a, int size);
-int		ft_rrotateb(int *a, int size);
+int		ft_rrotatea(t_gen *gen);
+int		ft_rrotateb(t_gen *gen);
 int		ft_birrotate(t_gen *gen);
 
 void	centera(t_gen *gen);
 void	runwind(t_gen *gen);
 void	push_swap(t_gen *gen);
-int		unwind(t_gen *gen);
-int		sunwind(t_gen *gen);
-int		ft_rewind(t_gen *gen);
 
 void	quickpath(t_gen *gen);
 int		tempcount(int i, int n, int asize, int bsize);

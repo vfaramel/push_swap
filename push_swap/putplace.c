@@ -6,7 +6,7 @@
 /*   By: vfaramel <vfaramel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 19:44:31 by vfaramel          #+#    #+#             */
-/*   Updated: 2023/03/07 14:13:41 by vfaramel         ###   ########.fr       */
+/*   Updated: 2023/03/09 20:16:17 by vfaramel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ void	forw(t_gen *gen, int i, int n)
 	}
 	while (n != 0)
 	{
-		gen->x += ft_rotatea(gen->a, gen->asize);
+		gen->x += ft_rotatea(gen);
 		n--;
 	}
 	while (i != 0)
 	{
-		gen->x += ft_rotateb(gen->b, gen->bsize);
+		gen->x += ft_rotateb(gen);
 		i--;
 	}
-	gen->x += pusha(gen->b, (gen->bsize)--, gen->a, (gen->asize)++);
+	gen->x += pusha(gen);
 }
 
 void	backw(t_gen *gen, int i, int n)
@@ -43,45 +43,45 @@ void	backw(t_gen *gen, int i, int n)
 	}
 	while (n != 0)
 	{
-		gen->x += ft_rrotatea(gen->a, gen->asize);
+		gen->x += ft_rrotatea(gen);
 		n--;
 	}
 	while (i != 0)
 	{
-		gen->x += ft_rrotateb(gen->b, gen->bsize);
+		gen->x += ft_rrotateb(gen);
 		i--;
 	}
-	gen->x += pusha(gen->b, (gen->bsize)--, gen->a, (gen->asize)++);
+	gen->x += pusha(gen);
 }
 
 void	splitb(t_gen *gen, int i, int n)
 {
 	while (i != 0)
 	{
-		gen->x += ft_rotateb(gen->b, gen->bsize);
+		gen->x += ft_rotateb(gen);
 		i--;
 	}
 	while (n != 0)
 	{
-		gen->x += ft_rrotatea(gen->a, gen->asize);
+		gen->x += ft_rrotatea(gen);
 		n--;
 	}
-	gen->x += pusha(gen->b, (gen->bsize)--, gen->a, (gen->asize)++);
+	gen->x += pusha(gen);
 }
 
 void	splita(t_gen *gen, int i, int n)
 {
 	while (i != 0)
 	{
-		gen->x += ft_rrotateb(gen->b, gen->bsize);
+		gen->x += ft_rrotateb(gen);
 		i--;
 	}
 	while (n != 0)
 	{
-		gen->x += ft_rotatea(gen->a, gen->asize);
+		gen->x += ft_rotatea(gen);
 		n--;
 	}
-	gen->x += pusha(gen->b, (gen->bsize)--, gen->a, (gen->asize)++);
+	gen->x += pusha(gen);
 }
 
 void	putplace(t_gen *gen, int i)

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rotate.c                                        :+:      :+:    :+:   */
+/*   ft_rotate_checker.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vfaramel <vfaramel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 11:29:25 by vfaramel          #+#    #+#             */
-/*   Updated: 2023/03/09 20:11:36 by vfaramel         ###   ########.fr       */
+/*   Updated: 2023/03/10 00:08:47 by vfaramel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	ft_rotatea(t_gen *gen)
 	while (size-- != 0)
 		gen->a[size + 1] = gen->a[size];
 	gen->a[0] = temp;
-	write(1, "ra\n", 3);
 	return (1);
 }
 
@@ -36,7 +35,6 @@ int	ft_rotateb(t_gen *gen)
 	while (size-- != 0)
 		gen->b[size + 1] = gen->b[size];
 	gen->b[0] = temp;
-	write(1, "rb\n", 3);
 	return (1);
 }
 
@@ -56,6 +54,5 @@ int	ft_birotate(t_gen *gen)
 	while (bsize-- != 0)
 		gen->b[bsize + 1] = gen->b[bsize];
 	gen->b[0] = temp;
-	write(1, "rr\n", 3);
 	return (1);
 }

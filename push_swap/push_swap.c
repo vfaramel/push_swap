@@ -6,7 +6,7 @@
 /*   By: vfaramel <vfaramel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 07:35:35 by vfaramel          #+#    #+#             */
-/*   Updated: 2023/03/07 22:03:36 by vfaramel         ###   ########.fr       */
+/*   Updated: 2023/03/10 00:27:20 by vfaramel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@ void	centera(t_gen *gen)
 	if (i < gen->msize / 2)
 	{
 		while (gen->a[0] != gen->msize)
-			gen->x += ft_rrotatea(gen->a, gen->asize);
+			gen->x += ft_rrotatea(gen);
 	}
 	else
 	{
 		while (gen->a[0] != gen->msize)
-			gen->x += ft_rotatea(gen->a, gen->asize);
+			gen->x += ft_rotatea(gen);
 	}
 }
 
-int	countdiff(int *b, int bsize)
+int	countdiff(t_gen *gen)
 {
 	int	maj;
 	int	min;
@@ -42,16 +42,16 @@ int	countdiff(int *b, int bsize)
 	maj = 0;
 	min = 0;
 	i = 0;
-	while (i < bsize)
+	while (i < gen->bsize)
 	{
-		if (b[i] < b[bsize - 1])
+		if (gen->b[i] < gen->b[gen->bsize - 1])
 			min++;
-		if (b[i] > b[bsize - 1])
+		if (gen->b[i] > gen->b[gen->bsize - 1])
 			maj++;
 		i++;
 	}
-	if (maj > b[bsize - 1] - min - 1)
-		x += ft_rotateb(b, bsize);
+	if (maj > gen->b[gen->bsize - 1] - min - 1)
+		x += ft_rotateb(gen);
 	return (x);
 }
 
@@ -61,23 +61,23 @@ void	runwind(t_gen *gen)
 	{
 		while (gen->msize - gen->a[gen->asize - 1]
 			< gen->a[gen->asize - 1] - gen->bsize - 1)
-			gen->x += ft_rotatea(gen->a, gen->asize);
-		gen->x += pushb(gen->a, (gen->asize)--, gen->b, (gen->bsize)++);
-		gen->x += countdiff(gen->b, gen->bsize);
+			gen->x += ft_rotatea(gen);
+		gen->x += pushb(gen);
+		gen->x += countdiff(gen);
 	}
 	if (gen->asize == 3)
 	{
 		if (gen->a[1] > gen->a[0] && gen->a[1] > gen->a[2])
-			gen->x += ft_rrotatea(gen->a, gen->asize);
+			gen->x += ft_rrotatea(gen);
 		else if (gen->a[2] > gen->a[0] && gen->a[2] > gen->a[1])
-			gen->x += ft_rotatea(gen->a, gen->asize);
+			gen->x += ft_rotatea(gen);
 		if (gen->a[1] < gen->a[2])
-			gen->x += ft_swapa(gen->a, gen->asize);
+			gen->x += ft_swapa(gen);
 	}
-	else
+	if (gen->asize == 2)
 	{
 		if (gen->a[1] > gen->a[0])
-			gen->x += ft_swapa(gen->a, gen->asize);
+			gen->x += ft_swapa(gen);
 	}
 }
 

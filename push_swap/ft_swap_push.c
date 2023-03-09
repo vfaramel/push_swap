@@ -1,64 +1,65 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operation.c                                        :+:      :+:    :+:   */
+/*   ft_swap_push.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vfaramel <vfaramel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 04:21:02 by vfaramel          #+#    #+#             */
-/*   Updated: 2023/02/26 23:12:24 by vfaramel         ###   ########.fr       */
+/*   Updated: 2023/03/09 20:33:54 by vfaramel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_swapb(int *a, int size)
+int	ft_swapa(t_gen *gen)
 {
 	int	temp;
+	int	size;
 
-	size--;
-	temp = a[size];
-	a[size] = a[size - 1];
-	a[size - 1] = temp;
+	size = gen->asize - 1;
+	temp = gen->a[size];
+	gen->a[size] = gen->a[size - 1];
+	gen->a[size - 1] = temp;
+	write(1, "sa\n", 3);
+	return (1);
+}
+
+int	ft_swapb(t_gen *gen)
+{
+	int	temp;
+	int	size;
+
+	size = gen->bsize - 1;
+	temp = gen->b[size];
+	gen->b[size] = gen->b[size - 1];
+	gen->b[size - 1] = temp;
 	write(1, "sb\n", 3);
 	return (1);
 }
 
-int	ft_biswap(int *a, int asize, int *b, int bsize)
+int	ft_biswap(t_gen *gen)
 {
 	write(1, "ss\n", 3);
-	return (ft_swapa(a, asize) + ft_swapb(b, bsize) - 1);
+	return (ft_swapa(gen) + ft_swapb(gen) - 1);
 }
 
-int	pusha(int *a, int asize, int *b, int bsize)
+int	pusha(t_gen *gen)
 {
-	b[bsize] = a[asize - 1];
-	a[asize - 1] = 0;
+	gen->a[gen->asize] = gen->b[gen->bsize - 1];
+	gen->b[gen->bsize - 1] = 0;
+	gen->bsize--;
+	gen->asize++;
 	write(1, "pa\n", 3);
 	return (1);
 }
 
-int	ft_rotateb(int *a, int size)
+int	pushb(t_gen *gen)
 {
-	int	temp;
-
-	size--;
-	temp = a[size];
-	while (size-- != 0)
-		a[size + 1] = a[size];
-	a[0] = temp;
-	write(1, "rb\n", 3);
-	return (1);
-}
-
-int	ft_swapa(int *a, int size)
-{
-	int	temp;
-
-	size--;
-	temp = a[size];
-	a[size] = a[size - 1];
-	a[size - 1] = temp;
-	write(1, "sa\n", 3);
+	gen->b[gen->bsize] = gen->a[gen->asize - 1];
+	gen->a[gen->asize - 1] = 0;
+	gen->asize--;
+	gen->bsize++;
+	write(1, "pb\n", 3);
 	return (1);
 }

@@ -1,61 +1,65 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rotate.c                                        :+:      :+:    :+:   */
+/*   ft_rrotate_checker.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vfaramel <vfaramel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/17 11:29:25 by vfaramel          #+#    #+#             */
-/*   Updated: 2023/03/09 20:11:36 by vfaramel         ###   ########.fr       */
+/*   Created: 2023/03/09 19:59:50 by vfaramel          #+#    #+#             */
+/*   Updated: 2023/03/10 00:08:57 by vfaramel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_rotatea(t_gen *gen)
+int	ft_rrotatea(t_gen *gen)
 {
 	int	temp;
+	int	i;
 	int	size;
 
+	i = -1;
 	size = gen->asize - 1;
-	temp = gen->a[size];
-	while (size-- != 0)
-		gen->a[size + 1] = gen->a[size];
-	gen->a[0] = temp;
-	write(1, "ra\n", 3);
+	temp = gen->a[0];
+	while (i++ < size)
+		gen->a[i] = gen->a[i + 1];
+	gen->a[size] = temp;
 	return (1);
 }
 
-int	ft_rotateb(t_gen *gen)
+int	ft_rrotateb(t_gen *gen)
 {
 	int	temp;
+	int	i;
 	int	size;
 
+	i = -1;
 	size = gen->bsize - 1;
-	temp = gen->b[size];
-	while (size-- != 0)
-		gen->b[size + 1] = gen->b[size];
-	gen->b[0] = temp;
-	write(1, "rb\n", 3);
+	temp = gen->b[0];
+	while (i++ < size)
+		gen->b[i] = gen->b[i + 1];
+	gen->b[size] = temp;
 	return (1);
 }
 
-int	ft_birotate(t_gen *gen)
+int	ft_birrotate(t_gen *gen)
 {
 	int	temp;
+	int	i;
 	int	asize;
 	int	bsize;
 
 	asize = gen->asize - 1;
 	bsize = gen->bsize - 1;
-	temp = gen->a[asize];
-	while (asize-- != 0)
-		gen->a[asize + 1] = gen->a[asize];
-	gen->a[0] = temp;
-	temp = gen->b[bsize];
-	while (bsize-- != 0)
-		gen->b[bsize + 1] = gen->b[bsize];
-	gen->b[0] = temp;
-	write(1, "rr\n", 3);
+	i = -1;
+	temp = gen->a[0];
+	while (i++ < asize)
+		gen->a[i] = gen->a[i + 1];
+	gen->a[asize] = temp;
+	i = -1;
+	temp = gen->b[0];
+	while (i++ < bsize)
+		gen->b[i] = gen->b[i + 1];
+	gen->b[bsize] = temp;
 	return (1);
 }
