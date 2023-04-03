@@ -6,7 +6,7 @@
 #    By: vfaramel <vfaramel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/07 14:18:00 by vfaramel          #+#    #+#              #
-#    Updated: 2023/03/10 00:09:56 by vfaramel         ###   ########.fr        #
+#    Updated: 2023/03/30 03:03:48 by vfaramel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,4 +27,4 @@ clean	:
 	rm -f $(OBJS) $(OBJB)
 fclean	: clean
 	rm -f $(NAME) checker
-re	: fclean all
+re	: fclean all 

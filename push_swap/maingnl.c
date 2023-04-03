@@ -6,7 +6,7 @@
 /*   By: vfaramel <vfaramel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 08:36:40 by vfaramel          #+#    #+#             */
-/*   Updated: 2023/03/10 00:33:27 by vfaramel         ###   ########.fr       */
+/*   Updated: 2023/03/29 23:53:22 by vfaramel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,25 +55,25 @@ void	makemove(char *arr, t_gen *gen)
 {
 	if (ft_strcmpnl(arr, "sa/n"))
 		ft_swapa(gen);
-	if (ft_strcmpnl(arr, "sb/n"))
+	else if (ft_strcmpnl(arr, "sb/n"))
 		ft_swapb(gen);
-	if (ft_strcmpnl(arr, "ss/n"))
+	else if (ft_strcmpnl(arr, "ss/n"))
 		ft_biswap(gen);
-	if (ft_strcmpnl(arr, "ra/n"))
+	else if (ft_strcmpnl(arr, "ra/n"))
 		ft_rotatea(gen);
-	if (ft_strcmpnl(arr, "rra/n"))
-		ft_rrotatea(gen);
-	if (ft_strcmpnl(arr, "rb/n"))
-		ft_rotateb(gen);
-	if (ft_strcmpnl(arr, "rrb/n"))
-		ft_rrotatea(gen);
-	if (ft_strcmpnl(arr, "rr/n"))
+	else if (ft_strcmpnl(arr, "rr/n"))
 		ft_birotate(gen);
-	if (ft_strcmpnl(arr, "rrr/n"))
+	else if (ft_strcmpnl(arr, "rra/n"))
+		ft_rrotatea(gen);
+	else if (ft_strcmpnl(arr, "rb/n"))
+		ft_rotateb(gen);
+	else if (ft_strcmpnl(arr, "rrb/n"))
+		ft_rrotateb(gen);
+	else if (ft_strcmpnl(arr, "rrr/n"))
 		ft_birrotate(gen);
-	if (ft_strcmpnl(arr, "pa/n"))
+	else if (ft_strcmpnl(arr, "pa/n"))
 		pusha(gen);
-	if (ft_strcmpnl(arr, "pb/n"))
+	else if (ft_strcmpnl(arr, "pb/n"))
 		pushb(gen);
 }
 

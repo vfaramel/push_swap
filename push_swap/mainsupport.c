@@ -6,11 +6,22 @@
 /*   By: vfaramel <vfaramel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 23:03:11 by vfaramel          #+#    #+#             */
-/*   Updated: 2023/03/10 00:25:34 by vfaramel         ###   ########.fr       */
+/*   Updated: 2023/03/30 03:05:37 by vfaramel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+size_t	ft_strlen1(char *c)
+
+{
+	size_t	i;
+
+	i = 0;
+	while (c[i] != '\0')
+		i++;
+	return (i);
+}
 
 int	toobig(char *str)
 {
@@ -56,47 +67,46 @@ int	ft_isnumeric(char *s)
 	return (1);
 }
 
-int	*argc2(char *argv, t_gen *gen)
+void	argc2(char *argv, t_gen *gen)
 {
-	char	**arr;
 	int		size;
 	int		i;
-	int		*base;
 
 	size = 0;
 	i = 0;
-	arr = ft_split(argv, ' ');
-	if (!arr)
-		return (0);
-	while (arr[size] != 0)
+	gen->c_base = ft_split(argv, ' ');
+	if (!gen->c_base)
+		return ;
+	while (gen->c_base[size] != 0)
 		size++;
-	base = ft_calloc((size), sizeof(int));
+	gen->msize = size;
+	if (size == 0)
+		return ;
+	gen->base = ft_calloc((size), sizeof(int));
+	if (!gen->base)
+		return ;
 	while (i < size)
 	{
-		if (!ft_isnumeric(arr[i]) || toobig(arr[i]))
-			return (0);
-		base[size - 1 - i] = ft_atoi(arr[i]);
-		free(arr[i]);
+		if (!ft_isnumeric(gen->c_base[i]) || toobig(gen->c_base[i])
+			|| ft_strlen1(gen->c_base[i]) == 0)
+			return ;
+		gen->base[size - 1 - i] = ft_atoi(gen->c_base[i]);
 		i++;
 	}
-	gen->msize = size;
-	free(arr);
-	return (base);
 }
 
-int	*argcmore(int argc, char **argv, t_gen *gen)
+void	argcmore(int argc, char **argv, t_gen *gen)
 {
 	int	i;
-	int	*base;
 
 	i = -1;
 	gen->msize = argc - 1;
-	base = ft_calloc((gen->msize), sizeof(int));
+	gen->base = ft_calloc((gen->msize), sizeof(int));
 	while (++i < gen->msize)
 	{
-		if (!ft_isnumeric(argv[i + 1]) || toobig(argv[i + 1]))
-			return (0);
-		base[argc - 2 - i] = ft_atoi(argv[i + 1]);
+		if (!ft_isnumeric(argv[i + 1]) || toobig(argv[i + 1])
+			|| ft_strlen1(argv[i + 1]) == 0)
+			return ;
+		gen->base[argc - 2 - i] = ft_atoi(argv[i + 1]);
 	}
-	return (base);
 }
