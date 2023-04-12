@@ -6,24 +6,27 @@
 /*   By: vfaramel <vfaramel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 03:22:58 by vfaramel          #+#    #+#             */
-/*   Updated: 2023/03/30 03:04:43 by vfaramel         ###   ########.fr       */
+/*   Updated: 2023/04/03 05:15:59 by vfaramel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	quit(t_gen *gen)
+void	quit(t_gen *gen, int argc)
 {
 	int	i;
 
 	i = 0;
 	free(gen->base);
-	while (gen->c_base[i] != 0)
+	if (argc == 2)
 	{
-		free(gen->c_base[i]);
-		i++;
+		while (gen->c_base[i] != 0)
+		{
+			free(gen->c_base[i]);
+			i++;
+		}
+		free(gen->c_base);
 	}
-	free(gen->c_base);
 	free(gen->b);
 	free(gen->a);
 }
@@ -44,10 +47,10 @@ int	main(int argc, char **argv)
 	if (gen.a == 0)
 	{
 		write(1, "Error\n", 6);
-		quit(&gen);
+		quit(&gen, argc);
 		return (0);
 	}
 	push_swap(&gen);
-	quit(&gen);
+	quit(&gen, argc);
 	return (0);
 }
