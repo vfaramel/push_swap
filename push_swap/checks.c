@@ -6,11 +6,36 @@
 /*   By: vfaramel <vfaramel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 14:30:48 by vfaramel          #+#    #+#             */
-/*   Updated: 2023/03/09 20:04:11 by vfaramel         ###   ########.fr       */
+/*   Updated: 2023/04/13 02:16:07 by vfaramel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	quit(t_gen *gen, int argc)
+{
+	int	i;
+
+	i = 0;
+	free(gen->base);
+	if (argc == 2)
+	{
+		while (gen->c_base[i] != 0)
+		{
+			free(gen->c_base[i]);
+			i++;
+		}
+		free(gen->c_base);
+	}
+	if (gen->step > 0)
+	{
+		free(gen->b);
+		free(gen->a);
+	}
+	if (gen->step < 2)
+		write(1, "Error\n", 6);
+	exit (0);
+}
 
 void	prova(t_gen *gen)
 {

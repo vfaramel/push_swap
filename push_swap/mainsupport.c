@@ -6,7 +6,7 @@
 /*   By: vfaramel <vfaramel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 23:03:11 by vfaramel          #+#    #+#             */
-/*   Updated: 2023/04/03 05:07:33 by vfaramel         ###   ########.fr       */
+/*   Updated: 2023/04/13 03:14:51 by vfaramel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,12 @@ int	ft_isnumeric(char *s)
 	int	i;
 
 	i = 0;
-	if (s[i] == '-')
+	if (s[i] == '-' | s[i] == '+')
+	{
 		i++;
+		if (!s[i])
+			return (1);
+	}
 	while (s[i])
 	{
 		if (!(ft_isdigit(s[i])))
@@ -67,32 +71,68 @@ int	ft_isnumeric(char *s)
 	return (1);
 }
 
+// void	original_stack(char *argv, t_gen *gen, int argc)
+// {
+// 	char	***split_source;
+// 	int		i;
+// 	int		n;
+// 	int		z;
+
+// 	i = 0;
+// 	split_source = malloc((argc - 1) * sizeof(**char));
+// 	if (!split_source)
+// 		quit(gen);
+// 	while (++i < argc)
+// 	{
+// 		n = 0;
+// 		split_source[i - 1] = ft_split(argv[i], ' ');
+// 		while (split_source[i - 1][n++] != 0)
+// 			gen->msize++;
+// 	}
+// 	gen->base = ft_calloc((gen->msize), sizeof(int));
+// 	if (!gen->base)
+// 		return ;
+// 	i = 0;
+// 	n = 0;
+// 	z = 0;
+// 	while (i < argc - 1)
+// 	{
+// 		while (split_source[i][n] != 0)
+// 		{
+// 			if (!ft_isnumeric(split_source[i][n]) || toobig(split_source[i][n])
+// 			|| ft_strlen1(split_source[i][n]) == 0)
+// 				quit(gen, 2);
+// 			gen->base[gen->msize - 1 - z++] = ft_atoi(split_source[i][n]);
+// 			n++;
+// 		}
+// 		i++;
+// 	}
+// }
+
 void	argc2(char *argv, t_gen *gen)
 {
-	int		size;
 	int		i;
 
-	size = 0;
 	i = 0;
 	gen->c_base = ft_split(argv, ' ');
 	if (!gen->c_base)
 		return ;
-	while (gen->c_base[size] != 0)
-		size++;
-	gen->msize = size;
-	if (size == 0)
+	while (gen->c_base[gen->msize] != 0)
+		gen->msize++;
+	if (gen->msize == 0)
 		return ;
-	gen->base = ft_calloc((size), sizeof(int));
+	gen->base = ft_calloc((gen->msize), sizeof(int));
 	if (!gen->base)
 		return ;
-	while (i < size)
+	while (i < gen->msize)
 	{
 		if (!ft_isnumeric(gen->c_base[i]) || toobig(gen->c_base[i])
 			|| ft_strlen1(gen->c_base[i]) == 0)
-			return ;
-		gen->base[size - 1 - i] = ft_atoi(gen->c_base[i]);
+			quit(gen, 2);
+		gen->base[gen->msize - 1 - i] = ft_atoi(gen->c_base[i]);
 		i++;
 	}
+	gen->step++;
 }
 
 void	argcmore(int argc, char **argv, t_gen *gen)
@@ -106,7 +146,8 @@ void	argcmore(int argc, char **argv, t_gen *gen)
 	{
 		if (!ft_isnumeric(argv[i + 1]) || toobig(argv[i + 1])
 			|| ft_strlen1(argv[i + 1]) == 0)
-			return ;
+			quit(gen, argc);
 		gen->base[argc - 2 - i] = ft_atoi(argv[i + 1]);
 	}
+	gen->step++;
 }

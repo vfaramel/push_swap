@@ -6,25 +6,23 @@
 #    By: vfaramel <vfaramel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/07 14:18:00 by vfaramel          #+#    #+#              #
-#    Updated: 2023/03/30 03:03:48 by vfaramel         ###   ########.fr        #
+#    Updated: 2023/04/13 02:08:30 by vfaramel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	= checks.c ft_rotate.c ft_rrotate.c main.c ft_swap_push.c push_swap.c putplace.c quickpath.c replacenumbers.c mainsupport.c
-SRCB	= checks.c ft_rotate_checker.c ft_rrotate_checker.c maingnl.c ft_swap_push_checker.c push_swap.c putplace.c quickpath.c replacenumbers.c get_next_line_bonus.c get_next_line_utils_bonus.c mainsupport.c
+SRCS	= checks.c push_swap.c putplace.c quickpath.c replacenumbers.c mainsupport.c
+SRCA	= $(SRCS) main.c ft_rotate.c ft_rrotate.c ft_swap_push.c
+SRCB	= $(SRCS) main_checker.c ft_rotate_checker.c ft_rrotate_checker.c ft_swap_push_checker.c \
+		../get_next_line/get_next_line_bonus.c ../get_next_line/get_next_line_utils_bonus.c
 
-OBJS	=	$(SRCS:.c=.o)
-OBJB	=	$(SRCB:.c=.o)
 CFLAGS	=	-Wall -Wextra -Werror -I.
 CC		= gcc
 NAME	= push_swap
-all		: $(NAME)
-$(NAME)	: $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) libft.a -o $(NAME)
-bonus	: $(OBJB)
-	$(CC) $(CFLAGS) $(OBJB) libft.a -o checker
+all		: $(SRCS)
+	$(CC) $(CFLAGS) $(SRCA) libft.a -o $(NAME)
+bonus	: $(SRCB)
+	$(CC) $(CFLAGS) $(SRCB) libft.a -o checker
 clean	:
-	rm -f $(OBJS) $(OBJB)
 fclean	: clean
 	rm -f $(NAME) checker
-re	: fclean all 
+re	: fclean all

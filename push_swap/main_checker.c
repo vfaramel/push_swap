@@ -6,7 +6,7 @@
 /*   By: vfaramel <vfaramel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 08:36:40 by vfaramel          #+#    #+#             */
-/*   Updated: 2023/03/29 23:53:22 by vfaramel         ###   ########.fr       */
+/*   Updated: 2023/04/13 01:44:06 by vfaramel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
-#include "get_next_line_bonus.h"
+#include "../get_next_line/get_next_line_bonus.h"
 #include "push_swap.h"
 
 int	correct_order(t_gen *gen)
@@ -95,29 +95,21 @@ void	eskere(t_gen *gen)
 
 int	main(int argc, char **argv)
 {
-	int		*base;
 	t_gen	gen;
 
 	if (argc == 1)
 		return (0);
 	if (argc == 2)
-		base = argc2(argv[1], &gen);
+		argc2(argv[1], &gen);
 	if (argc > 2)
-		base = argcmore(argc, argv, &gen);
-	gen.a = replacenumbers(base, gen.msize);
-	free(base);
+		argcmore(argc, argv, &gen);
+	gen.a = replacenumbers(&gen);
 	gen.b = ft_calloc((gen.msize), sizeof(int));
 	if (gen.a == 0)
-	{
-		write(1, "Error\n", 6);
-		free(gen.b);
-		free(gen.a);
-		return (0);
-	}
+		quit(&gen, argc);
 	gen.asize = gen.msize;
 	gen.bsize = 0;
 	eskere(&gen);
-	free(gen.b);
-	free(gen.a);
+	quit(&gen, argc);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: vfaramel <vfaramel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 11:59:43 by vfaramel          #+#    #+#             */
-/*   Updated: 2023/04/12 19:34:46 by vfaramel         ###   ########.fr       */
+/*   Updated: 2023/04/13 02:07:31 by vfaramel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,4 @@ void	quickpath(t_gen *gen)
 		d++;
 	}
 	putplace(gen, w + 1);
-	// prova(gen);
 }

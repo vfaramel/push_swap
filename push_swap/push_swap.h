@@ -6,7 +6,7 @@
 /*   By: vfaramel <vfaramel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 03:49:35 by vfaramel          #+#    #+#             */
-/*   Updated: 2023/03/30 02:42:12 by vfaramel         ###   ########.fr       */
+/*   Updated: 2023/04/13 01:28:38 by vfaramel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,12 @@ typedef struct g_list
 	int		x;
 	char	**c_base;
 	int		*base;
+	int		step;
 }	t_gen;
 
 int		main(int argc, char **argv);
-int		*replacenumbers(int	*a, int size);
+void	quit(t_gen *gen, int argc);
+int		*replacenumbers(t_gen *gen);
 void	prova(t_gen *gen);
 void	argc2(char *argv, t_gen *gen);
 void	argcmore(int argc, char **argv, t_gen *gen);
