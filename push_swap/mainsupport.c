@@ -6,7 +6,7 @@
 /*   By: vfaramel <vfaramel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 23:03:11 by vfaramel          #+#    #+#             */
-/*   Updated: 2023/04/13 03:14:51 by vfaramel         ###   ########.fr       */
+/*   Updated: 2023/04/17 20:35:04 by vfaramel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,44 +70,6 @@ int	ft_isnumeric(char *s)
 	}
 	return (1);
 }
-
-// void	original_stack(char *argv, t_gen *gen, int argc)
-// {
-// 	char	***split_source;
-// 	int		i;
-// 	int		n;
-// 	int		z;
-
-// 	i = 0;
-// 	split_source = malloc((argc - 1) * sizeof(**char));
-// 	if (!split_source)
-// 		quit(gen);
-// 	while (++i < argc)
-// 	{
-// 		n = 0;
-// 		split_source[i - 1] = ft_split(argv[i], ' ');
-// 		while (split_source[i - 1][n++] != 0)
-// 			gen->msize++;
-// 	}
-// 	gen->base = ft_calloc((gen->msize), sizeof(int));
-// 	if (!gen->base)
-// 		return ;
-// 	i = 0;
-// 	n = 0;
-// 	z = 0;
-// 	while (i < argc - 1)
-// 	{
-// 		while (split_source[i][n] != 0)
-// 		{
-// 			if (!ft_isnumeric(split_source[i][n]) || toobig(split_source[i][n])
-// 			|| ft_strlen1(split_source[i][n]) == 0)
-// 				quit(gen, 2);
-// 			gen->base[gen->msize - 1 - z++] = ft_atoi(split_source[i][n]);
-// 			n++;
-// 		}
-// 		i++;
-// 	}
-// }
 
 void	argc2(char *argv, t_gen *gen)
 {
