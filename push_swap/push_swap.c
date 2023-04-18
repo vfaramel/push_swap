@@ -6,7 +6,7 @@
 /*   By: vfaramel <vfaramel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 07:35:35 by vfaramel          #+#    #+#             */
-/*   Updated: 2023/03/10 00:27:20 by vfaramel         ###   ########.fr       */
+/*   Updated: 2023/04/18 03:54:24 by vfaramel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	runwind(t_gen *gen)
 {
 	while (gen->asize > 3)
 	{
-		while (gen->msize - gen->a[gen->asize - 1]
+		while (gen->msize - gen->a[gen->asize - 1] + 1
 			< gen->a[gen->asize - 1] - gen->bsize - 1)
 			gen->x += ft_rotatea(gen);
 		gen->x += pushb(gen);

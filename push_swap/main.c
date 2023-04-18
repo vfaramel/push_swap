@@ -6,7 +6,7 @@
 /*   By: vfaramel <vfaramel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 03:22:58 by vfaramel          #+#    #+#             */
-/*   Updated: 2023/04/13 01:40:58 by vfaramel         ###   ########.fr       */
+/*   Updated: 2023/04/18 03:34:28 by vfaramel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,13 @@ int	main(int argc, char **argv)
 	t_gen	gen;
 
 	gen.x = 0;
+	gen.step = 0;
 	if (argc == 1)
 		return (0);
-	if (argc == 2)
-		argc2(argv[1], &gen);
-	if (argc > 2)
-		argcmore(argc, argv, &gen);
-	gen.a = replacenumbers(&gen);
+	original_stack(argv, &gen, argc);
 	gen.b = ft_calloc((gen.msize), sizeof(int));
-	if (gen.a == 0)
-		quit(&gen, argc);
+	replacenumbers(&gen);
 	push_swap(&gen);
-	quit(&gen, argc);
+	quit(&gen);
 	return (0);
 }

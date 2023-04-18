@@ -6,27 +6,28 @@
 /*   By: vfaramel <vfaramel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 14:30:48 by vfaramel          #+#    #+#             */
-/*   Updated: 2023/04/13 02:16:07 by vfaramel         ###   ########.fr       */
+/*   Updated: 2023/04/18 03:13:09 by vfaramel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	quit(t_gen *gen, int argc)
+void	quit(t_gen *gen)
 {
 	int	i;
+	int	n;
 
 	i = 0;
 	free(gen->base);
-	if (argc == 2)
+	while (gen->c_base[i] != 0)
 	{
-		while (gen->c_base[i] != 0)
-		{
-			free(gen->c_base[i]);
-			i++;
-		}
-		free(gen->c_base);
+		n = 0;
+		while (gen->c_base[i][n] != 0)
+			free(gen->c_base[i][n++]);
+		free(gen->c_base[i]);
+		i++;
 	}
+	free(gen->c_base);
 	if (gen->step > 0)
 	{
 		free(gen->b);

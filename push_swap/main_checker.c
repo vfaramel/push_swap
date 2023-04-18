@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   maingnl.c                                          :+:      :+:    :+:   */
+/*   main_checker.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vfaramel <vfaramel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 08:36:40 by vfaramel          #+#    #+#             */
-/*   Updated: 2023/04/13 01:44:06 by vfaramel         ###   ########.fr       */
+/*   Updated: 2023/04/18 03:36:28 by vfaramel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ void	makemove(char *arr, t_gen *gen)
 		pusha(gen);
 	else if (ft_strcmpnl(arr, "pb/n"))
 		pushb(gen);
+	else
+		quit(gen);
 }
 
 void	eskere(t_gen *gen)
@@ -84,9 +86,11 @@ void	eskere(t_gen *gen)
 	arr = get_next_line(0);
 	while (arr)
 	{
+		free(arr);
 		makemove(arr, gen);
 		arr = get_next_line(0);
 	}
+	free(arr);
 	if (correct_order(gen))
 		write(1, "OK\n", 3);
 	else
@@ -99,17 +103,13 @@ int	main(int argc, char **argv)
 
 	if (argc == 1)
 		return (0);
-	if (argc == 2)
-		argc2(argv[1], &gen);
-	if (argc > 2)
-		argcmore(argc, argv, &gen);
-	gen.a = replacenumbers(&gen);
+	gen.step = 0;
+	original_stack(argv, &gen, argc);
 	gen.b = ft_calloc((gen.msize), sizeof(int));
-	if (gen.a == 0)
-		quit(&gen, argc);
+	replacenumbers(&gen);
 	gen.asize = gen.msize;
 	gen.bsize = 0;
 	eskere(&gen);
-	quit(&gen, argc);
+	quit(&gen);
 	return (0);
 }
