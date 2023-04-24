@@ -6,7 +6,7 @@
 /*   By: vfaramel <vfaramel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 07:35:35 by vfaramel          #+#    #+#             */
-/*   Updated: 2023/04/18 03:54:24 by vfaramel         ###   ########.fr       */
+/*   Updated: 2023/04/25 00:08:25 by vfaramel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,8 @@ void	runwind(t_gen *gen)
 
 	i = 1;
 	gen->aug = 0;
-	perc = gen->msize * 15 / 100;
-	if (gen->msize%5 > 0)
+	perc = gen->msize * 29 / 100; //(27 - (gen->msize / 100)) / 100;
+	if (gen->msize % 5 > 0)
 		perc++;
 	while (i <= perc + gen->aug)
 		pushable_nums(i++ + gen->aug, gen);

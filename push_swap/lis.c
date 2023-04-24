@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lis.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vfaramel <vfaramel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 20:27:29 by marvin            #+#    #+#             */
-/*   Updated: 2023/04/21 20:27:29 by marvin           ###   ########.fr       */
+/*   Updated: 2023/04/24 23:59:00 by vfaramel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void    bigger_than(int **temp_lis, int lis, int c)
     while (++n < lis)
         temp_lis[lis][n] = temp_lis[lis - 1][n];
     temp_lis[lis][n] = c;
-    lis++;
 }
 
 void    lower_than(int **temp_lis, int lis, int c)
@@ -55,12 +54,13 @@ void    lower_than(int **temp_lis, int lis, int c)
         }
     }
 }
+
 void    add_to_lis(t_gen *gen, int **temp_lis, int n)
 {
     int c;
     int lis;
-    int    i;
-    int     s;
+    int i;
+    int s;
 
     lis = 0;
     i = 1;
@@ -79,21 +79,20 @@ void    add_to_lis(t_gen *gen, int **temp_lis, int n)
         else
             lower_than(temp_lis, lis, c);
     }
-    // stato_lis(lis, temp_lis);
-    // printf("%d ", lis);
     i = 0;
     while (i < lis - 1)
         free(temp_lis[i++]);
     if (lis > gen->len_lis)
     {
-        if (!gen->len_lis)
-            free(gen->lis);
+        if (gen->len_lis != 0)
+              free(gen->lis);
         gen->len_lis = lis;
         gen->lis = temp_lis[i];
     }
     else
         free(temp_lis[i]);
 }
+
 void    lis(t_gen *gen)
 {
     int **temp_lis;
@@ -113,6 +112,5 @@ void    lis(t_gen *gen)
         if (gen->lis[i] > gen->msize)
             gen->lis[i] -= gen->msize;
     }
-    stato_lis(gen->len_lis, gen->lis);
     free(temp_lis);
 }

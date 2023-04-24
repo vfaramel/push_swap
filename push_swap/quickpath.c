@@ -6,7 +6,7 @@
 /*   By: vfaramel <vfaramel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 11:59:43 by vfaramel          #+#    #+#             */
-/*   Updated: 2023/04/13 02:07:31 by vfaramel         ###   ########.fr       */
+/*   Updated: 2023/04/25 01:33:03 by vfaramel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,22 @@ void	quickpath2(t_gen *gen, int *count, int *w, int d)
 		*count = tcount;
 		*w = gen->bsize - 1 - d;
 	}
+	else
+	{
+		if (tcount == *count && abs_num(gen->b[*w] - (gen->msize / 2)) > abs_num(gen->b[gen->bsize - 1 - d] - (gen->msize / 2 + 1)))
+			*w = gen->bsize - 1 - d;
+	}
 	n = findspace(gen->a, gen->asize, gen->b[d]);
 	tcount = tempcount(d + 1, n, gen->asize, gen->bsize);
 	if (tcount < *count)
 	{
 		*count = tcount;
 		*w = d;
+	}
+	else
+	{
+		if (tcount == *count && abs_num(gen->b[*w] - (gen->msize / 2)) > abs_num(gen->b[d] - (gen->msize / 2 + 1)))
+			*w = d;
 	}
 }
 

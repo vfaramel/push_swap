@@ -6,7 +6,7 @@
 /*   By: vfaramel <vfaramel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 14:30:48 by vfaramel          #+#    #+#             */
-/*   Updated: 2023/04/18 03:13:09 by vfaramel         ###   ########.fr       */
+/*   Updated: 2023/04/25 01:21:52 by vfaramel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ void	quit(t_gen *gen)
 	{
 		free(gen->b);
 		free(gen->a);
-	    free(gen->lis);
-
+		free(gen->lis);
 	}
 	if (gen->step < 2)
 		write(1, "Error\n", 6);
@@ -59,6 +58,13 @@ int	maxint(int a, int b)
 	if (a > b)
 		return (a);
 	return (b);
+}
+
+int	abs_num(int x)
+{
+	if (x < 0)
+		return (-x);
+	return (x);
 }
 
 int	findspace(int *a, int asize, int b)

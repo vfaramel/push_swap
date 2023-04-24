@@ -6,7 +6,7 @@
 /*   By: vfaramel <vfaramel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 03:49:35 by vfaramel          #+#    #+#             */
-/*   Updated: 2023/04/18 03:32:12 by vfaramel         ###   ########.fr       */
+/*   Updated: 2023/04/25 01:22:10 by vfaramel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	original_stack(char **argv, t_gen *gen, int argc);
 void	make_base(t_gen *gen, int argc);
 size_t	ft_strlen1(char *c);
 void    lis(t_gen *gen);
+int		abs_num(int x);
 
 int		ft_swapa(t_gen *gen);
 int		ft_swapb(t_gen *gen);
