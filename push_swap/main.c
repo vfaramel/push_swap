@@ -23,6 +23,7 @@ int	main(int argc, char **argv)
 	original_stack(argv, &gen, argc);
 	gen.b = ft_calloc((gen.msize), sizeof(int));
 	replacenumbers(&gen);
+	lis(&gen);
 	push_swap(&gen);
 	quit(&gen);
 	return (0);

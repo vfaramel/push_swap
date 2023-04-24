@@ -43,6 +43,7 @@ void	original_stack(char **argv, t_gen *gen, int argc)
 	int		n;
 
 	i = 0;
+	gen->msize = 0;
 	gen->c_base = malloc((argc) * sizeof(char **));
 	if (!gen->c_base)
 		quit(gen);

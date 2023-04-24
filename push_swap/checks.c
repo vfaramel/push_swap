@@ -32,6 +32,8 @@ void	quit(t_gen *gen)
 	{
 		free(gen->b);
 		free(gen->a);
+	    free(gen->lis);
+
 	}
 	if (gen->step < 2)
 		write(1, "Error\n", 6);
@@ -66,7 +68,7 @@ int	findspace(int *a, int asize, int b)
 	n = 0;
 	while (n < asize - 1)
 	{
-		if ((a[n] > b && b > a[n + 1]) || ((a[n] < a[n + 1] && a[n] > b)))
+		if ((a[n] > b && b > a[n + 1]) || ((a[n] < a[n + 1]) && a[n] > b) || ((a[n] < a[n + 1]) && a[n + 1] < b))
 			break ;
 		n++;
 	}

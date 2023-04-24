@@ -23,6 +23,9 @@ typedef struct g_list
 	int		bsize;
 	int		asize;
 	int		msize;
+	int		*lis;
+	int		len_lis;
+	int		aug;
 	int		x;
 	char	***c_base;
 	int		*base;
@@ -38,6 +41,7 @@ int		ft_isnumeric(char *s);
 void	original_stack(char **argv, t_gen *gen, int argc);
 void	make_base(t_gen *gen, int argc);
 size_t	ft_strlen1(char *c);
+void    lis(t_gen *gen);
 
 int		ft_swapa(t_gen *gen);
 int		ft_swapb(t_gen *gen);

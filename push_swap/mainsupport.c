@@ -56,7 +56,7 @@ int	ft_isnumeric(char *s)
 	int	i;
 
 	i = 0;
-	if (s[i] == '-' | s[i] == '+')
+	if ((s[i] == '-') | (s[i] == '+'))
 	{
 		i++;
 		if (!s[i])
