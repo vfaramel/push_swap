@@ -6,7 +6,7 @@
 /*   By: vfaramel <vfaramel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 14:30:48 by vfaramel          #+#    #+#             */
-/*   Updated: 2023/04/25 01:21:52 by vfaramel         ###   ########.fr       */
+/*   Updated: 2023/04/25 03:06:39 by vfaramel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	quit(t_gen *gen)
 		i++;
 	}
 	free(gen->c_base);
-	if (gen->step > 0)
+	if (gen->step > 1)
 	{
 		free(gen->b);
 		free(gen->a);
